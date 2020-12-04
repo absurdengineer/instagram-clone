@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import firebase from 'firebase'
-import { Button } from "@material-ui/core"
 import { db, storage } from '../../firebase/firebase.util'
-
+import './create-post.component.css'
 
 const CreatePost = ({username}) => {
 
@@ -58,7 +57,9 @@ const CreatePost = ({username}) => {
     }
     console.log(username)
     return ( 
-        <form onSubmit={handleUpload}>
+        <form onSubmit={handleUpload} className='createpost'>
+            <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Logo" className="createpost__headerImage"/>
+            <h4 style={{textAlign:"center"}} >Post Something New</h4>
             <input 
               style={{marginTop:20}} 
               onChange={(event) => setCaption(event.target.value)} 
@@ -73,8 +74,8 @@ const CreatePost = ({username}) => {
               type="file" 
               required
             />
-            <progress value={progress} max="100" />
-            <Button type="submit">Upload</Button>
+            <progress className='createpost__progress' value={progress} max="100" />
+            <button className='createpost__button' type="submit">Upload</button>
         </form>
      );
 }

@@ -108,14 +108,8 @@ const App = () => {
    })
    
   },[])
-  console.log(user)
   return (
-    <div className="App">
-    {user?.displayName ? 
-      <CreatePost username={user.displayName} />
-      :
-      <h3>Login to Upload</h3>
-    }
+    <div className="app">
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -216,21 +210,42 @@ const App = () => {
       </Modal>
       <div className="app__header">
         <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Logo" className="app__headerImage"/>
+        { user ?
+          <div>
+            <span>Signed in as <strong> {user.displayName} </strong></span>
+            <Button variant="outlined" color="secondary" onClick={() => auth.signOut() }>Sign Out</Button>
+          </div>
+          
+        : <div className="app__login-container">
+            <Button style={{marginRight : 10}} variant="outlined" color="primary" onClick={() => setOpen(true) }>Sign Up</Button> 
+            <Button onClick={() => setOpenSignIn(true) }>Login </Button> 
+          </div>
+        
+        }
       </div>
-      { user ?
-        <div>
-          <span>Signed in as <strong> {user.displayName} </strong></span>
-          <Button variant="outlined" color="secondary" onClick={() => auth.signOut() }>Sign Out</Button>
+    
+      <div className="app__posts">
+
+        <div className="app__postsLeft">
+          {posts.map( ({id,post}) => <Post key={id} postId={id} user={user} username={post.username} imageUrl={post.imageUrl} caption={post.caption} />)}
+        </div>
+        <div className="app__postsRight">
+          {user?.displayName ? 
+            <CreatePost username={user.displayName} />
+            :
+            <div className="app__alertMessage">
+              <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="Logo" className="app__headerImage"/>
+              <h3 style={{textAlign: "center", margin : "20px 0"}}>Login to Upload</h3>
+            </div>
+          } 
+
         </div>
         
-      : <div className="app__login-container">
-          <Button variant="outlined" color="primary" onClick={() => setOpen(true) }>Sign Up</Button> 
-          <Button onClick={() => setOpenSignIn(true) }>Login </Button> 
-        </div>
+      </div>
+      <div>
+        
+      </div>
       
-      }
-      <h1>Hello Clever Programmers Let's build an Instagram clone with React !!!</h1>
-      {posts.map( ({id,post}) => <Post key={id} username={post.username} imageUrl={post.imageUrl} caption={post.caption} />)} 
     </div>
   ); 
   

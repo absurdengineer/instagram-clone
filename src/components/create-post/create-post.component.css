@@ -1,0 +1,25 @@
+.createpost{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    border: 1px solid lightgrey;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+.createpost__progress{
+    width: 100%;
+    margin : 10px 0;
+}
+.createpost__button{
+    background-color: #bcbada;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    height: 40px;
+
+}
+.createpost__headerImage{
+    object-fit: contain;
+    margin: 30px 0;
+}

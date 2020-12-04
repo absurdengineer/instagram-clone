@@ -1,5 +1,5 @@
 .post{
-    max-width: 500px;
+    max-width: 700px;
     background-color: white;
     border: 1px solid lightgrey;
     margin-bottom: 45px;
@@ -25,4 +25,31 @@
 
 .post__avatar{
     margin-right : 10px;
+}
+
+.post__commentBox{
+    display: flex;
+    margin-top: 10px;
+    border-top: 1px solid lightgrey;
+}
+
+.post__input { 
+    border: none;
+    align-items: center;
+    flex: 1;
+    padding: 10px 20px;
+    border-top: 1px solid lightgrey;
+}
+
+.post__button {
+    padding: 0 20px;
+    flex: 0;
+    border: none;
+    background-color: transparent;
+    border-top: 1px solid lightgrey;
+    color: #6082a3;
+}
+
+.post__comments {
+    padding-left: 20px;
 }
