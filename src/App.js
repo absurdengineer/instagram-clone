@@ -4,6 +4,7 @@ import './App.css'
 import Post from './components/post/post.component'
 import { auth, db } from './firebase/firebase.util'
 import SendIcon from '@material-ui/icons/Send';
+import CreatePost from './components/create-post/create-post.component'
 
 function getModalStyle() {
   const top = 50
@@ -91,7 +92,7 @@ const App = () => {
   // useEffect -> Runs a piece of code based on a specific condition   
   useEffect(()=>{
     // this is where code runs
-   db.collection('posts').onSnapshot(snapshot => {
+   db.collection('posts').orderBy('timestamp','desc').onSnapshot(snapshot => {
       // onSnapshot() ->is a listener which listens each time data changes in database
       // Like add,edit,delete Document this code down here will get Execueted
 
@@ -110,6 +111,11 @@ const App = () => {
   console.log(user)
   return (
     <div className="App">
+    {user?.displayName ? 
+      <CreatePost username={user.displayName} />
+      :
+      <h3>Login to Upload</h3>
+    }
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -219,7 +225,7 @@ const App = () => {
         
       : <div className="app__login-container">
           <Button variant="outlined" color="primary" onClick={() => setOpen(true) }>Sign Up</Button> 
-          <Button variant="contained" style={{backgroundColor : "lightgreen"}} onClick={() => setOpenSignIn(true) }>Login </Button> 
+          <Button onClick={() => setOpenSignIn(true) }>Login </Button> 
         </div>
       
       }
