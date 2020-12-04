@@ -49,7 +49,7 @@ const CreatePost = ({username}) => {
                             username : username
                         })
                     })
-                    setTimeout(setProgress(0),5000)
+                    setProgress(0)
                     setCaption('')
                     setImage(null)
             }

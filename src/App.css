@@ -31,6 +31,7 @@
 
 .app__postsRight{
   margin-left: 20px;
+  max-width: 350px;
   position: relative;
 }
 
